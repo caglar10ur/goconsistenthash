@@ -1,6 +1,6 @@
 // Reimplemantation of http://www.lexemetech.com/2007/11/consistent-hashing.html in Go
 
-package main
+package consistenthash
 
 import "fmt"
 import "crypto/md5"
@@ -97,45 +97,4 @@ func (ch *ConsistentHash) search(key string) (int) {
 func (ch *ConsistentHash) Get(key string) (string) {
     index := ch.search(generateHash(key))
     return ch.Circle[ch.Hashes[index]]
-}
-
-func main(){
-    numberOfReplicas := 32
-    keys := []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
-
-    distribution := func (ch *ConsistentHash, keys []string) (map[string]int) {
-        m := make(map[string]int)
-        for _, v := range keys {
-            m[ch.Get(v)]++
-        }
-        return m
-    }
-
-    ch := New(numberOfReplicas)
-    ch.Add("node1")
-    ch.Add("node2")
-    ch.Add("node3")
-
-    fmt.Println("With 3 nodes")
-    fmt.Printf("\t%v\n", distribution(ch, keys))
-
-    fmt.Println("Removing node1")
-    ch.Remove("node1")
-    fmt.Printf("\t%v\n", distribution(ch, keys))
-
-    fmt.Println("Removing node3")
-    ch.Remove("node3")
-    fmt.Printf("\t%v\n", distribution(ch, keys))
-
-    fmt.Println("Adding node3")
-    ch.Add("node3")
-    fmt.Printf("\t%v\n", distribution(ch, keys))
-
-    fmt.Println("Adding node1")
-    ch.Add("node1")
-    fmt.Printf("\t%v\n", distribution(ch, keys))
-
-    fmt.Println("Adding node4")
-    ch.Add("node4")
-    fmt.Printf("\t%v\n", distribution(ch, keys))
 }
