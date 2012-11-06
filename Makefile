@@ -1,6 +1,6 @@
 all:
 	@go build consistenthash.go
-	@go test
+	@go test -v
 bench:
 	@go test -bench=".*"
 format:
