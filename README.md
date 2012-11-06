@@ -1,4 +1,8 @@
-Reimplemantation of http://www.lexemetech.com/2007/11/consistent-hashing.html in Go
+# Consistent Hash
+
+Reimplemantation of (http://www.lexemetech.com/2007/11/consistent-hashing.html "Consistent Hashing by Tom White") in Go
+
+## Consistent hashing (from the web page mentioned above)
 
 Consistent hashing is a scheme that provides a hash table functionality in a way that the adding or removing of one slot does not significantly change the mapping of keys to slots.
 
@@ -7,3 +11,7 @@ The need for consistent hashing arose from limitations experienced while running
 It would be nice if, when a cache machine was added, it took its fair share of objects from all the other cache machines. Equally, when a cache machine was removed, it would be nice if its objects were shared between the remaining machines. This is exactly what consistent hashing does - consistently maps objects to the same cache machine, as far as is possible, at least.
 
 The basic idea behind the consistent hashing algorithm is to hash both objects and caches using the same hash function. The reason to do this is to map the cache to an interval, which will contain a number of object hashes. If the cache is removed then its interval is taken over by a cache with an adjacent interval.
+
+## Status
+
+[![Build Status](https://secure.travis-ci.org/caglar10ur/goconsistenthash.png)](http://travis-ci.org/caglar10ur/goconsistenthash)
