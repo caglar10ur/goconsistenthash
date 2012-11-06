@@ -20,7 +20,7 @@ func TestAdd(t *testing.T) {
         t.Errorf("Circle or Hashes failed")
     }
     ch.Add("node2")
-    if len(ch.Circle) != 2 * numberOfReplicas || len(ch.Hashes) != 2 * numberOfReplicas {
+    if len(ch.Circle) != 2*numberOfReplicas || len(ch.Hashes) != 2*numberOfReplicas {
         t.Errorf("Circle or Hashes failed")
     }
 }
@@ -33,7 +33,7 @@ func TestRemove(t *testing.T) {
         t.Errorf("Remove failed")
     }
     ch.Remove("node1")
-    if len(ch.Circle) != 0 * numberOfReplicas || len(ch.Hashes) != 0 * numberOfReplicas {
+    if len(ch.Circle) != 0 || len(ch.Hashes) != 0 {
         t.Errorf("Remove failed")
     }
 }
@@ -68,7 +68,7 @@ func TestGet(t *testing.T) {
 
     for _, v := range keys {
         m[ch.Get(v)]++
-        if (v == "a" && ch.Get(v) != "node1") || (v == "l" && ch.Get(v) != "node2") || (v == "p" && ch.Get(v) != "node3") || (v == "w" && ch.Get(v) != "node4"){
+        if (v == "a" && ch.Get(v) != "node1") || (v == "l" && ch.Get(v) != "node2") || (v == "p" && ch.Get(v) != "node3") || (v == "w" && ch.Get(v) != "node4") {
             t.Errorf("Get failed")
         }
     }
@@ -79,7 +79,7 @@ func TestGet(t *testing.T) {
     m = make(map[string]int)
     for _, v := range keys {
         m[ch.Get(v)]++
-        if (v == "a" && ch.Get(v) != "node1") || (v == "l" && ch.Get(v) != "node2") || (v == "p" && ch.Get(v) != "node3") || (v == "w" && ch.Get(v) != "node5"){
+        if (v == "a" && ch.Get(v) != "node1") || (v == "l" && ch.Get(v) != "node2") || (v == "p" && ch.Get(v) != "node3") || (v == "w" && ch.Get(v) != "node5") {
             t.Errorf("Get failed")
         }
     }
@@ -90,7 +90,7 @@ func TestGet(t *testing.T) {
     m = make(map[string]int)
     for _, v := range keys {
         m[ch.Get(v)]++
-        if (v == "a" && ch.Get(v) != "node1") || (v == "l" && ch.Get(v) != "node2") || (v == "p" && ch.Get(v) != "node3") || (v == "w" && ch.Get(v) != "node4"){
+        if (v == "a" && ch.Get(v) != "node1") || (v == "l" && ch.Get(v) != "node2") || (v == "p" && ch.Get(v) != "node3") || (v == "w" && ch.Get(v) != "node4") {
             t.Errorf("Get failed")
         }
     }

@@ -13,11 +13,11 @@ const SEPERATOR = ":"
 
 type ConsistentHash struct {
     //replicas indicates how many virtual points should be used per node and they are required to improve the distribution
-    NumberOfReplicas    int
+    NumberOfReplicas int
     // Circle
-    Circle              map[string]string
+    Circle map[string]string
     // Sorted list of hashes
-    Hashes              []string
+    Hashes []string
 }
 
 // helper function for generating md5 hash
@@ -74,7 +74,7 @@ func (ch *ConsistentHash) Remove(node string) {
     // As long as I see Go has append but not remove...
     ch.Hashes = ch.Hashes[:0]
 
-    for k,_ := range ch.Circle {
+    for k := range ch.Circle {
         ch.Hashes = append(ch.Hashes, k)
     }
     // keep Hashes sorted as we are going to use binary search on them
@@ -82,7 +82,7 @@ func (ch *ConsistentHash) Remove(node string) {
 }
 
 // returns the index of node that holds given key
-func (ch *ConsistentHash) search(key string) (int) {
+func (ch *ConsistentHash) search(key string) int {
     // use binary search to find a proper node for fiven key
     index := sort.Search(len(ch.Hashes), func(i int) bool { return ch.Hashes[i] > key })
 
@@ -94,7 +94,7 @@ func (ch *ConsistentHash) search(key string) (int) {
 }
 
 // returns the node for given key
-func (ch *ConsistentHash) Get(key string) (string) {
+func (ch *ConsistentHash) Get(key string) string {
     index := ch.search(generateHash(key))
     return ch.Circle[ch.Hashes[index]]
 }
