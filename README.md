@@ -1,6 +1,6 @@
 # Consistent Hash
 
-Reimplemantation of (http://www.lexemetech.com/2007/11/consistent-hashing.html "Consistent Hashing by Tom White") in Go
+Reimplemantation of ["Consistent Hashing" (by Tom White)](http://www.lexemetech.com/2007/11/consistent-hashing.html) in Go
 
 ## Consistent hashing (from the web page mentioned above)
 
